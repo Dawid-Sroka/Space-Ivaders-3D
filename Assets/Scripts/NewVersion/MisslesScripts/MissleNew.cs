@@ -9,21 +9,43 @@ public abstract class MissleNew : MonoBehaviour
         switch(other.gameObject.tag){
             case "Enemy":
             {
+                //EnemyHit();
                 other.gameObject.GetComponent<Unit>().TakeHit(damage);
-                Destroy(gameObject);
                 break;
             }
             case "Player":
             {
+                //PlayerHit();
                 other.gameObject.GetComponent<Unit>().TakeHit(damage);
-                Destroy(gameObject);
+                break;
+            }
+            case "Shield":
+            {
+                //ShieldHit();
+                Destroy(other.gameObject);
                 break;
             }
             default:
             {
-                Destroy(gameObject);
+                //DefaultHit();
                 break;
             }
         }
+        DestroySelf();
+    }
+    protected virtual void DestroySelf(){
+        Destroy(gameObject);
+    }
+    protected virtual void EnemyHit(){
+        //other.gameObject.GetComponent<Unit>().TakeHit(damage);
+    }
+    protected virtual void PlayerHit(){
+        //other.gameObject.GetComponent<Unit>().TakeHit(damage);
+    }
+    protected virtual void ShieldHit(){
+        //Destroy(other.gameObject);
+    }
+    protected virtual void DefaultHit(){
+        
     }
 }

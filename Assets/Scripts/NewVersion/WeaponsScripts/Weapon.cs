@@ -5,12 +5,15 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     protected GameObject misslePrefab, newMissle, wielder;
+    public GameObject playerMisslePrefab, enemyMisslePrefab;
     protected Transform wielderT;
     protected Sprite weaponSpriteUI;
     public int ammo;
     public bool ready;
     [SerializeField]
-    protected float velocity, reloadTime, castTime;
+    protected float velocity, castTime;
+    public float reloadTime;
+    private AudioSource myAudioSource;
     protected Vector3 localForward;
     protected string missleTag;
 
@@ -19,13 +22,21 @@ public abstract class Weapon : MonoBehaviour
         wielder = wielderT.gameObject;
         localForward = Quaternion.AngleAxis(wielderT.eulerAngles.y, Vector3.up) * Vector3.forward;
         missleTag = wielder.tag + "Missle"; //e.g. "EnemyMissle"/"PlayerMissle"
+        if(missleTag == "PlayerMissle"){
+            misslePrefab = playerMisslePrefab;
+        }
+        else{
+            misslePrefab = enemyMisslePrefab;
+        }
         ready = true;
+        myAudioSource = GetComponent<AudioSource>();
         //Debug.Log(localForward);
     }
     public virtual void Shoot(){
         if(ammo!= int.MaxValue){
             ammo--;
         }
+        myAudioSource.Play();
         StartCoroutine("Reload");
         //Debug.Log("U've got " + ammo + " missles left");
     }

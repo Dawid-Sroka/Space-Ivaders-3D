@@ -22,6 +22,7 @@ public class WaveManager : MonoBehaviour
         spawnOffset = Vector3.zero;
         initialSpawnPosition = GameObject.Find("SpawnPosition").GetComponent<Transform>();
         minions.Add('B', Resources.Load<GameObject>("Units/Minions/BasicMinion"));
+        minions.Add('S', Resources.Load<GameObject>("Units/Minions/ShieldedMinion"));
         SpawnWave();
     }
     public void SpawnWave(){

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerNew : Unit
 {
-    UIManager uiManager; 
+    UIManager uiManager;
     List<float> reloads = new List<float>();
     override public void Awake(){
         base.Awake();
@@ -46,16 +46,18 @@ public class PlayerNew : Unit
         Weapon currentWeapon = weapons[currentWeaponID];
         if(currentWeapon.ammo > 0 && currentWeapon.ready){
             base.Shoot();
+            StartCoroutine(uiManager.AnimateReload(currentWeaponID));
         }
     }
     override public void TakeHit(int damage){
+        GetComponent<AudioSource>().Play();
         base.TakeHit(damage);
     }
     override protected void OnTakeHit(){
         uiManager.EmptyHitPoints();
     }
-    override protected void DestroySelf(){
-        //gameManager.GameOver();
+    override public void DestroySelf(){
+        gameManager.GameOver();
         base.DestroySelf();
     }
     /* Functions considering adding new and regaining lost HPs

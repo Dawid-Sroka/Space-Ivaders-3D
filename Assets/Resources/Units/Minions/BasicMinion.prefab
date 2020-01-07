@@ -45,6 +45,8 @@ MonoBehaviour:
   hitPoints: 2
   maxHP: 2
   weapons: []
+  deathAnimation: {fileID: 1134129239631916, guid: 746ae1a09d2464c4cb5bb609392ce2ed,
+    type: 3}
   reloadTimeRange: 6
   stepTime: 1
   moveDist: 0.5
@@ -55,21 +57,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: fbe1c601941e022409cfe60828da7a81,
-        type: 3}
-      propertyPath: m_Name
-      value: BasicMinion
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: fbe1c601941e022409cfe60828da7a81,
-        type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: fbe1c601941e022409cfe60828da7a81,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: fbe1c601941e022409cfe60828da7a81,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -130,6 +117,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7d1dc2725a53b104ba626b1c89474c2e, type: 2}
+    - target: {fileID: -927199367670048503, guid: fbe1c601941e022409cfe60828da7a81,
+        type: 3}
+      propertyPath: m_Name
+      value: BasicMinion
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: fbe1c601941e022409cfe60828da7a81,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: fbe1c601941e022409cfe60828da7a81,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbe1c601941e022409cfe60828da7a81, type: 3}
 --- !u!1 &3384767421990625158 stripped

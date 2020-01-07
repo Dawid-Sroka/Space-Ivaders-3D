@@ -6,13 +6,14 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    List<GameObject> weaponSlots = new List<GameObject>();
+    public List<GameObject> weaponSlots = new List<GameObject>();
     List<GameObject> hitPoints = new List<GameObject>();
+    [SerializeField]
+    List<GameObject> screenBreaks = new List<GameObject>();
     [SerializeField]
     TextMeshProUGUI waveNr, score, credits, timeToNextWave;
     [SerializeField]
-    GameObject pauseMenu, mainMenu, UICanvas;
-    GameObject hitPointPrefab, weaponSlot;
+    GameObject pauseMenu, gameOverScreen, UICanvas, hitPointPrefab, weaponSlot;
     Sprite fullHitPoint, emptyHitPoint;
 
     PlayerNew player;
@@ -34,8 +35,20 @@ public class UIManager : MonoBehaviour
         AddNewHitPoints(player.HitPoints);
 
     }
+    public void GameOver(){
+        gameOverScreen.SetActive(true);
+    }
     public IEnumerator AnimateReload(int index){
-        yield break;
+        float reload = player.weapons[index].reloadTime;
+        float timeLeft = reload;
+        Image currentWeaponSlot = weaponSlots[index].GetComponent<Image>();
+        currentWeaponSlot.fillAmount = 1f;
+        do{
+            yield return new WaitForEndOfFrame();
+            timeLeft-= Time.deltaTime;
+            currentWeaponSlot.fillAmount = timeLeft/reload;
+        }
+        while(timeLeft > 0f);
     }
     public void Countdown(int time){
         IEnumerator coroutine = CountdownIE(time);
@@ -59,11 +72,13 @@ public class UIManager : MonoBehaviour
     public void FillHitPoints(){
         for(int i = 0; i < player.HitPoints; i++){
             hitPoints[i].GetComponent<Image>().sprite = fullHitPoint;
+            screenBreaks[i].SetActive(false);
         }
     }
     public void EmptyHitPoints(){
         for(int i = player.HitPoints; i < hitPoints.Count; i++){
             hitPoints[i].GetComponent<Image>().sprite = emptyHitPoint;
+            screenBreaks[i].SetActive(true);
         }
     }
     public void UpdateScore(int n){

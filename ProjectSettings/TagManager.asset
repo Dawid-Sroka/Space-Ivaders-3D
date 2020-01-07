@@ -8,6 +8,7 @@ TagManager:
   - DefenseBlock
   - PlayerMissle
   - EnemyMissle
+  - Shield
   layers:
   - Default
   - TransparentFX

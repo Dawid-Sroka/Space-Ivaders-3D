@@ -6,8 +6,8 @@ public class BasicWeapon : Weapon
 {
     public override void Awake(){
         base.Awake();
-        misslePrefab = Resources.Load("Missles/basicMissle") as GameObject;
-        if(misslePrefab == null){Debug.Log("Missle not found");}
+        //misslePrefab = Resources.Load("Missles/basicMissle") as GameObject;
+        //if(misslePrefab == null){Debug.Log("Missle not found");}
         //velocity = 4.5f;
         ammo = int.MaxValue;
     }

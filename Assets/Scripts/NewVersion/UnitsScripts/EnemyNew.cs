@@ -18,7 +18,7 @@ public class EnemyNew : Unit
     override protected void OnTakeHit(){
         base.OnTakeHit();
     }
-    override protected void DestroySelf(){
+    override public void DestroySelf(){
         gameManager.UpdateScore(pointsValue);
         gameManager.UpdateCredits(creditsValue);
 

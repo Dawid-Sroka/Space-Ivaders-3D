@@ -8,12 +8,16 @@ public class GameManager : MonoBehaviour
 {
     // __NEW_GAME_MANAGER__
     UIManager uiManager;
+    MusicManager audioManager;
     private int score, credits;
     public void Awake(){
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<MusicManager>();
         Physics.IgnoreLayerCollision(11, 9);     //player missles & side
         Physics.IgnoreLayerCollision(12, 10);   //enemy missles & side
         Physics.IgnoreLayerCollision(12, 11);   //enemy & ally missles
+        Physics.IgnoreLayerCollision(11, 11);
+        Physics.IgnoreLayerCollision(12, 12);
     }
     public void UpdateScore(int n){
         score+= n;
@@ -22,6 +26,19 @@ public class GameManager : MonoBehaviour
     public void UpdateCredits(int n){
         credits+=n;
         uiManager.UpdateCredits(credits);
+    }
+    public void ReloadScene(){
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void LoadMainMenu(){
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void GameOver(){
+        Time.timeScale = 0f;
+        uiManager.GameOver();
+        audioManager.PlayTheme(audioManager.lossTheme);
     }
     /* __OLD_GAME_MANAGER__
 

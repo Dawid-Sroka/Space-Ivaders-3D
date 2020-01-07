@@ -32,7 +32,7 @@ public abstract class Unit : MonoBehaviour
         //reloads.Add(0f);
     }
     protected virtual void OnTakeHit(){}
-    protected virtual void DestroySelf(){
+    public virtual void DestroySelf(){
         Destroy(gameObject);
     }
 }

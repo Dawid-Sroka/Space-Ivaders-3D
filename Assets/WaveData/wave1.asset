@@ -15,4 +15,4 @@ MonoBehaviour:
   bossFight: 0
   waveNr: 1
   timeToNextWave: 10
-  enemiesPlacement: '---B--B'
+  enemiesPlacement: '---B--S'
